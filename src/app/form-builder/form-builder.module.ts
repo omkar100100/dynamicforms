@@ -12,8 +12,9 @@ import { FieldBuilderComponent } from './field-builder.component';
 import { FieldErrorDisplayComponent } from '../field-error-display/field-error-display.component';
 //import { FlexLayoutModule} from '@angular/flex-layout';
 
+import {ButtonsModule} from 'ngx-bootstrap'
 @NgModule({
-    imports: [ReactiveFormsModule,CommonModule],
+    imports: [ReactiveFormsModule,CommonModule,ButtonsModule.forRoot()],
     declarations:[TextBoxComponent,CheckBoxComponent,DropDownComponent,FieldBuilderComponent,
     FileComponent,RadioComponent,FormBuilderComponent,FieldErrorDisplayComponent],
     exports:[FormBuilderComponent],

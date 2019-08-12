@@ -20,7 +20,7 @@ import {FieldErrorDisplayComponent} from '../field-error-display/field-error-dis
             <div class="form-group row">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-                  <button type="submit"  class="btn btn-primary">Save</button>
+                  <button type="submit"  class="btn btn-warning">Save</button>
                 </div>
             </div>
         </form>

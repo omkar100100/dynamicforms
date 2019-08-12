@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component,ViewChild,ElementRef} from '@angular/core';
 import {FormGroup,FormControl} from '@angular/forms';
 import { Validators } from "@angular/forms";
+import {FormBuilderComponent} from './form-builder/form-builder.component'
 
 interface User{
   firstName:String,
@@ -17,6 +18,11 @@ interface Country{
     templateUrl:'./app.component.html'
 })
 export class AppComponent {
+
+ 
+    isCollapsed=false;
+    currentForm='search-form';
+
     public form:FormGroup;
     unsubscribe:any;
 
@@ -31,7 +37,47 @@ export class AppComponent {
        { key: 'pak', label: 'Pakistan' },
     ]
 
-    public fields:any = [
+     public searchFields:any = [
+      {
+      type: 'text',
+      name: 'firstName',
+      label: 'First Name',
+      value: '',
+      required: true,
+      order:7,
+      validations: [
+        {
+          name: "required",
+          validator: Validators.required,
+          message: "First Name Required"
+        },
+        {
+          name: "pattern",
+          validator: Validators.pattern("^[a-zA-Z]+$"),
+          message: "Accept only text"
+        }
+        ]
+
+    },
+    {
+      type: 'text',
+      name: 'lastName',
+      label: 'Last Name',
+      value: '',
+      required: false,
+      order:6
+    },
+    {
+      type: 'text',
+      name: 'email',
+      label: 'Email',
+      value: '',
+      required: false,
+      order:5
+    }];
+     
+
+    public regFields:any = [
       {
       type: 'text',
       name: 'firstName',
@@ -113,11 +159,11 @@ export class AppComponent {
     ]
     constructor(){
         this.form = new FormGroup({
-            fields: new FormControl(JSON.stringify(this.fields))
+            fields: new FormControl(JSON.stringify(this.regFields))
         });
         this.unsubscribe = this.form.valueChanges.subscribe( (update)=> {
             console.log(update);
-            this.fields = JSON.parse(update.fields);
+            this.regFields = JSON.parse(update.fields);
         });
     }
 
@@ -125,8 +171,12 @@ export class AppComponent {
         console.log(event);
     }
 
-    getFields(){
-        return this.fields;
+    getRegistrationFields(){
+        return this.regFields;
+    }
+
+    getSearchFields(){
+        return this.searchFields;
     }
 
     ngDestroy(){

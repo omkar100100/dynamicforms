@@ -1,16 +1,31 @@
 
 <div class="col-sm-12">
-  <div class="card">
-    <div class="card-header">Dynamic Forms</div>
+
+
+   
+
+  <div>
+      <button type="button" class="btn btn-primary" (click)="currentForm='search-form'"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Generate Search Form</button>
+      <button (click)="currentForm='registration-form'">Generate Registration Form</button>
+  </div>
+  
+  
+  <div class="card" [collapse]="currentForm=='registration-form'">
+    <div class="card-header">Registration Form</div>
     <div class="card-body">
-        <form-builder [fields]="getFields()"></form-builder>
+        <form-builder #search [fields]="getRegistrationFields()"></form-builder>
     </div>
   </div>
-</div>
 
-<div class="col-sm-12">
- <div class="form-group" [formGroup]="form">
-    <label>JSON</label>
-    <textarea formControlName="fields" class="form-control" rows="3"></textarea>
+
+  <div class="card"  [collapse]="currentForm=='search-form'">
+      <div class="card-header">Search Form</div>
+      <div class="card-body">
+          <form-builder #search [fields]="getSearchFields()"></form-builder>
+      </div>
   </div>
+  
+
+
 </div>
