@@ -1,0 +1,37 @@
+button {
+  font-family: Arial !important;
+  background-color: #eee !important;
+  border: none !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  cursor: hand !important;
+}
+button:hover {
+  background-color: blue !important;
+}
+button:disabled {
+  background-color: #eee !important;
+  color: #aaa;
+  cursor: auto; 
+}
+
+.my-class {
+  background-color: #eee !important;
+  padding: 6px;
+  margin: 6px;
+  border: 2px solid red;
+}
+
+
+.my-input {
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  padding: 10px 15px;
+  color: green
+  
+}
