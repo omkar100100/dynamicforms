@@ -3,10 +3,8 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'textbox',
-    styleUrls: ['input.scss'],
-    template: `
-        <div [formGroup]="form" >
-           <input *ngIf="!field.multiline" [attr.type]="field.type" class="form-control" id="field.name" 
+    template:`<div [formGroup]="form" >
+           <input [ngClass]="'my-input'" *ngIf="!field.multiline" [attr.type]="field.type" class="form-control" id="field.name" 
              [name]="field.name" [formControlName]="field.name" />
             
 
@@ -14,8 +12,7 @@ import { FormGroup } from '@angular/forms';
                 [id]="field.name" rows="9" class="form-control" [placeholder]="field.placeholder">
             </textarea>
             
-        </div>
-    `
+        </div>`
 })
 export class TextBoxComponent{
     @Input() field: any = {}

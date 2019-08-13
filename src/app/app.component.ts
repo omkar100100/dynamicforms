@@ -2,6 +2,9 @@ import {Component,ViewChild,ElementRef} from '@angular/core';
 import {FormGroup,FormControl} from '@angular/forms';
 import { Validators } from "@angular/forms";
 import {FormBuilderComponent} from './form-builder/form-builder.component'
+import {AppConstants} from './constants/AppConstants'
+
+
 
 interface User{
   firstName:String,
@@ -21,7 +24,7 @@ export class AppComponent {
 
  
     isCollapsed=false;
-    currentForm='search-form';
+    currentForm=AppConstants.SEARCH_FORM;
 
     public form:FormGroup;
     unsubscribe:any;
@@ -171,12 +174,14 @@ export class AppComponent {
         console.log(event);
     }
 
-    getRegistrationFields(){
-        return this.regFields;
-    }
+   getFields(formName:String){
+      switch(formName){
+        case AppConstants.SEARCH_FORM: 
+            return this.searchFields
+        case AppConstants.REGISTRATION_FORM:
+            return this.regFields
 
-    getSearchFields(){
-        return this.searchFields;
+      }
     }
 
     ngDestroy(){

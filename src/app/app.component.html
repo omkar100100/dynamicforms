@@ -1,28 +1,25 @@
 
 <div class="col-sm-12">
 
-
-   
-
   <div>
-      <button type="button" class="btn btn-primary" (click)="currentForm='search-form'"
+      <button type="button" class="btn btn-primary" (click)="currentForm='registration-form'"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Generate Search Form</button>
-      <button (click)="currentForm='registration-form'">Generate Registration Form</button>
+      <button (click)="currentForm='search-form'">Generate Registration Form</button>
   </div>
   
   
-  <div class="card" [collapse]="currentForm=='registration-form'">
+  <div class="card" [ngClass]="'my-class'" [collapse]="currentForm=='registration-form'" >
     <div class="card-header">Registration Form</div>
     <div class="card-body">
-        <form-builder #search [fields]="getRegistrationFields()"></form-builder>
+        <form-builder  #registration [fields]="getFields('registration-form')"></form-builder>
     </div>
   </div>
 
 
-  <div class="card"  [collapse]="currentForm=='search-form'">
+  <div class="card" [ngClass]="'my-class'" [collapse]="currentForm=='search-form'" >
       <div class="card-header">Search Form</div>
       <div class="card-body">
-          <form-builder #search [fields]="getSearchFields()"></form-builder>
+          <form-builder #search [fields]="getFields('search-form')"></form-builder>
       </div>
   </div>
   
