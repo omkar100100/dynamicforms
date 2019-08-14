@@ -1,6 +1,8 @@
 
 <div class="col-sm-12">
 
+
+
   <div>
       <button type="button" class="btn btn-primary" (click)="currentForm='registration-form'"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Generate Search Form</button>
@@ -8,7 +10,7 @@
   </div>
   
   
-  <div class="card" [ngClass]="'my-class'" [collapse]="currentForm=='registration-form'" >
+  <div  class="card" [collapse]="currentForm=='registration-form'" >
     <div class="card-header">Registration Form</div>
     <div class="card-body">
         <form-builder  #registration [fields]="getFields('registration-form')"></form-builder>

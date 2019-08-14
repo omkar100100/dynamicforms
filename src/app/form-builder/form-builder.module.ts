@@ -10,11 +10,14 @@ import { CommonModule } from '@angular/common';
 import { FormBuilderComponent } from './form-builder.component';
 import { FieldBuilderComponent } from './field-builder.component';
 import { FieldErrorDisplayComponent } from '../field-error-display/field-error-display.component';
-//import { FlexLayoutModule} from '@angular/flex-layout';
-
+import { FlexLayoutModule} from '@angular/flex-layout';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 import {ButtonsModule} from 'ngx-bootstrap'
+
+
 @NgModule({
-    imports: [ReactiveFormsModule,CommonModule,ButtonsModule.forRoot()],
+    imports: [ MatButtonModule,
+    MatCardModule,FlexLayoutModule,ReactiveFormsModule,CommonModule,ButtonsModule.forRoot()],
     declarations:[TextBoxComponent,CheckBoxComponent,DropDownComponent,FieldBuilderComponent,
     FileComponent,RadioComponent,FormBuilderComponent,FieldErrorDisplayComponent],
     exports:[FormBuilderComponent],

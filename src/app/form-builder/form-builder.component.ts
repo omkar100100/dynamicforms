@@ -4,30 +4,34 @@ import {FieldErrorDisplayComponent} from '../field-error-display/field-error-dis
 @Component({
     selector:'form-builder',
     template:`
-
       <!--  <form (ngSubmit)="onSubmit($event)" [formGroup]="form" class="form-horizontal" > -->
-        <form (submit)="onsubmit.emit(this.form.value)" [formGroup]="form" class="form-horizontal" >
-            <div fxLayout="row" >
-            <div *ngFor="let field of fields" fxLayoutAlign="end" fxFlexOrder="field.order" 
-               [ngClass]="displayFieldCss(field.name)">
-                <field-builder [field]="field" [form]="form"></field-builder>
-                <!--<app-field-error-display [displayError]="isFieldValid(field.name)" 
-                [errorMsg]="field.validations[0].message">
-				        </app-field-error-display>  -->
+
+        <form (submit)="onsubmit.emit(this.form.value)" [formGroup]="form"  >
+            <div fxLayout="row wrap" >
+              <div 
+                fxFlex.md="33"
+                fxFlex.sm="50"
+                fxFlex.xs="100"
+                fxLayout="column"
+                style="padding: 5px;"
+                fxFlex="0 1 calc(50.3% - 32px)"
+                *ngFor="let field of fields" >
+                    <field-builder  [field]="field" [form]="form" ></field-builder> 
+              </div>
+           </div>
+
+            
+            <div class="col-md-3">
+              <div class="col-md-9">
+                <button type="submit"  class="btn btn-warning">Save</button>
+              </div>
             </div>
-            </div>
-            <div class="form-row"></div>
-            <div class="form-group row">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                  <button type="submit"  class="btn btn-warning">Save</button>
-                </div>
-            </div>
+              
         </form>
     `
 })
 export class FormBuilderComponent {
-  
+
  @Input() fields: any[]=[];
  @Output() submit= new EventEmitter();
  form:FormGroup

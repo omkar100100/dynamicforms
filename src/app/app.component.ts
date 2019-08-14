@@ -32,6 +32,7 @@ export class AppComponent {
     user:User={
       firstName: 'chandra sekhar',
       lastName: 'avula'
+     
     }
 
     countries:Country[]=[

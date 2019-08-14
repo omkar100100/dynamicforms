@@ -6,9 +6,10 @@ import { CollapseModule} from 'ngx-bootstrap';
 
 import { FormBuilderModule } from './form-builder/form-builder.module';
 import { AppComponent } from './app.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-    imports: [ BrowserModule, ReactiveFormsModule , FormBuilderModule,CollapseModule.forRoot()],
+    imports: [ BrowserModule, ReactiveFormsModule ,FlexLayoutModule, FormBuilderModule,CollapseModule.forRoot()],
     exports:[],
     declarations: [AppComponent],
     bootstrap: [AppComponent]
