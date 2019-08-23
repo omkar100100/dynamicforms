@@ -5,7 +5,9 @@ import {FieldErrorDisplayComponent} from '../field-error-display/field-error-dis
     selector:'form-builder',
     template:`
       <!--  <form (ngSubmit)="onSubmit($event)" [formGroup]="form" class="form-horizontal" > -->
-
+    <div class="card" >
+     <div class="card-header">{{formTitle}}</div>
+      <div class="card-body">
         <form (submit)="onsubmit.emit(this.form.value)" [formGroup]="form"  >
             <div fxLayout="row wrap" >
               <div 
@@ -28,11 +30,15 @@ import {FieldErrorDisplayComponent} from '../field-error-display/field-error-dis
             </div>
               
         </form>
+      </div>
+      </div>
     `
 })
 export class FormBuilderComponent {
 
  @Input() fields: any[]=[];
+ @Input() formTitle: any;
+
  @Output() submit= new EventEmitter();
  form:FormGroup
 

@@ -24,7 +24,8 @@ export class AppComponent {
 
  
     isCollapsed=false;
-    currentForm=AppConstants.SEARCH_FORM;
+    currentForm = AppConstants.SEARCH_FORM;
+    formTitle:String;
 
     public form:FormGroup;
     unsubscribe:any;
@@ -161,7 +162,26 @@ export class AppComponent {
       order:1
     }
     ]
+
+    openForm(formName){
+       switch(formName){
+          case AppConstants.SEARCH_FORM : this.currentForm=AppConstants.SEARCH_FORM;break;
+          case AppConstants.REGISTRATION_FORM : this.currentForm=AppConstants.REGISTRATION_FORM; break;
+          default : ;
+        }
+
+        switch(this.currentForm){
+          case AppConstants.SEARCH_FORM : this.formTitle=AppConstants.SEARCH_FORM_TITLE;break;
+          case AppConstants.REGISTRATION_FORM : this.formTitle=AppConstants.REGISTRATION_FORM_TITLE; break;
+          default : ;
+        }
+
+        console.log("FORM TITLE:" + this.formTitle)
+        console.log("CURRENT FORM"+ this.currentForm)
+    }
+
     constructor(){
+        this.currentForm=AppConstants.REGISTRATION_FORM
         this.form = new FormGroup({
             fields: new FormControl(JSON.stringify(this.regFields))
         });
@@ -169,6 +189,15 @@ export class AppComponent {
             console.log(update);
             this.regFields = JSON.parse(update.fields);
         });
+
+        switch(this.currentForm){
+          case AppConstants.SEARCH_FORM : this.formTitle=AppConstants.SEARCH_FORM_TITLE;break;
+          case AppConstants.REGISTRATION_FORM : this.formTitle=AppConstants.REGISTRATION_FORM_TITLE; break;
+          default : ;
+        }
+
+        console.log("form name:" + this.currentForm);
+        console.log("form tite:" + this.formTitle);
     }
 
     onUpload(event){
@@ -176,6 +205,8 @@ export class AppComponent {
     }
 
    getFields(formName:String){
+      console.log("form name1:" + formName);
+
       switch(formName){
         case AppConstants.SEARCH_FORM: 
             return this.searchFields

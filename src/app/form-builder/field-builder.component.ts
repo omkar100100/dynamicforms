@@ -5,8 +5,9 @@ import { Component,Input,OnInit} from '@angular/core';
     template: `
        
         <div  [formGroup]="form" fxFlexOrder={{field.order}} fxLayout="row nowrap" fxLayoutGap="5px">
-            <label class="col-md-3 form-control-label" [attr.for]="field.label">{{field.label}}</label>
-            <strong class="text-danger" *ngIf="field.required">*</strong>
+           
+             <label class="col-md-3 form-control-label" [attr.for]="field.label">{{field.label}}</label>
+            <!-- <strong class="text-danger" *ngIf="field.required">*</strong> -->
             <div class="col-mod-9" [ngSwitch]="field.type" >
                 <textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></textbox>
                 <dropdown *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></dropdown>
