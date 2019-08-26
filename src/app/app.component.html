@@ -1,16 +1,19 @@
 
 <div class="col-sm-12">
   <div fxLayoutGap="10px" >
-      <button type="button" class="btn btn-primary" (click)="openForm('search-form')"
+      <button type="button" class="btn btn-primary" (click)="add('search-form')"
         [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">Generate Search Form</button>
 
-      <button (click)="openForm('registration-form')">Generate Registration Form</button>
+      <button (click)="add('registration-form')">Generate Registration Form</button>
   </div>
   
   <br>
 
 
-  <div  [collapse]="currentForm!='search-form'" >
+  <div  [collapse]="currentForm!='search-form'" #search  ></div>
+  <div  [collapse]="currentForm!='registration-form'" #registration  ></div>
+
+  <!--<div  [collapse]="currentForm!='search-form'" >
      <form-builder #search [formTitle]="formTitle" [fields]="getFields(currentForm)"></form-builder>
   </div>
 
@@ -25,6 +28,6 @@
 
   <div   [collapse]="currentForm!='registration-form'" >
       <form-builder [formTitle]="formTitle" #registration [fields]="getFields(currentForm)"></form-builder>
-  </div>
+  </div>-->
 
 </div>

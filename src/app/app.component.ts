@@ -1,4 +1,4 @@
-import {Component,ViewChild,ElementRef} from '@angular/core';
+import {Component,ViewChild,ViewContainerRef,ComponentRef,ElementRef, ComponentFactory,ComponentFactoryResolver} from '@angular/core';
 import {FormGroup,FormControl} from '@angular/forms';
 import { Validators } from "@angular/forms";
 import {FormBuilderComponent} from './form-builder/form-builder.component'
@@ -163,24 +163,9 @@ export class AppComponent {
     }
     ]
 
-    openForm(formName){
-       switch(formName){
-          case AppConstants.SEARCH_FORM : this.currentForm=AppConstants.SEARCH_FORM;break;
-          case AppConstants.REGISTRATION_FORM : this.currentForm=AppConstants.REGISTRATION_FORM; break;
-          default : ;
-        }
+     @ViewChild('search', { read: ViewContainerRef }) entry: ViewContainerRef;
 
-        switch(this.currentForm){
-          case AppConstants.SEARCH_FORM : this.formTitle=AppConstants.SEARCH_FORM_TITLE;break;
-          case AppConstants.REGISTRATION_FORM : this.formTitle=AppConstants.REGISTRATION_FORM_TITLE; break;
-          default : ;
-        }
-
-        console.log("FORM TITLE:" + this.formTitle)
-        console.log("CURRENT FORM"+ this.currentForm)
-    }
-
-    constructor(){
+    constructor(private resolver: ComponentFactoryResolver){
         this.currentForm=AppConstants.REGISTRATION_FORM
         this.form = new FormGroup({
             fields: new FormControl(JSON.stringify(this.regFields))
@@ -199,6 +184,46 @@ export class AppComponent {
         console.log("form name:" + this.currentForm);
         console.log("form tite:" + this.formTitle);
     }
+
+    add(formName){
+      
+
+        switch(formName){
+          case AppConstants.SEARCH_FORM : this.currentForm=AppConstants.SEARCH_FORM;break;
+          case AppConstants.REGISTRATION_FORM : this.currentForm=AppConstants.REGISTRATION_FORM; break;
+          default : ;
+        }
+
+        switch(this.currentForm){
+          case AppConstants.SEARCH_FORM : this.formTitle=AppConstants.SEARCH_FORM_TITLE;break;
+          case AppConstants.REGISTRATION_FORM : this.formTitle=AppConstants.REGISTRATION_FORM_TITLE; break;
+          default : ;
+        }
+
+      this.entry.clear();
+      const factory = this.resolver.resolveComponentFactory(FormBuilderComponent);
+      const componentRef = this.entry.createComponent(factory);
+      componentRef.instance.formTitle= this.formTitle;
+      componentRef.instance.fields = this.getFields(this.currentForm);
+    }
+
+    openForm1(formName){
+       switch(formName){
+          case AppConstants.SEARCH_FORM : this.currentForm=AppConstants.SEARCH_FORM;break;
+          case AppConstants.REGISTRATION_FORM : this.currentForm=AppConstants.REGISTRATION_FORM; break;
+          default : ;
+        }
+
+        switch(this.currentForm){
+          case AppConstants.SEARCH_FORM : this.formTitle=AppConstants.SEARCH_FORM_TITLE;break;
+          case AppConstants.REGISTRATION_FORM : this.formTitle=AppConstants.REGISTRATION_FORM_TITLE; break;
+          default : ;
+        }
+
+        console.log("FORM TITLE:" + this.formTitle)
+        console.log("CURRENT FORM"+ this.currentForm)
+    }
+
 
     onUpload(event){
         console.log(event);
