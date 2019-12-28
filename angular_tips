@@ -1,0 +1,10 @@
+1)Moving validation error messages from the template.
+	a)Create a composite validation messages object that contains all validation errors for each control.
+2)Use navigation control logic.
+   a)Use navigation control logic to trigger all form validations.Gather all validation errors.
+3)Add order property to valdiation messages object.
+4)Display validation errors depending on the order property in one or more Modal windows.
+5)Use FormArray to dynamically generate similar form controls.
+
+Ref: http://csharp-video-tutorials.blogspot.com/2018/09/angular-6-tutorial-for-beginners.html
+
